@@ -6,13 +6,15 @@
         <p class="menu_link" >|</p>
         <router-link class="menu_link" to="/contact">Contact</router-link>
       </nav>
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
   </section>
 </template>
 
 <script>
-
-// import AddWorker from './components/AddWorker.vue'
-// import WorkersList from './components/WorkersList.vue';
 
 export default {
 
