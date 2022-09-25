@@ -12,17 +12,17 @@
       <div class="addWorker_wrapper">
         <label class="addWorker_label">department: </label>
         <select class="addWorker_input" @change="changeDepartament($event)" type="text" v-model="department">
-          <option value="">IT</option>
-          <option value="">Sales</option>
-          <option value="">Administation</option>
+          <option value="IT">IT</option>
+          <option value="Sales">Sales</option>
+          <option value="Administration">Administation</option>
         </select>
       </div>
       <div class="addWorker_wrapper">
         <label class="addWorker_label">salary: </label>
-        <input class="addWorker_input" type="text" v-model="salary">
+        <input class="addWorker_input" type="number" v-model="salary">
       </div>
     </form>
-    <button class="app_button">Add Worker</button>
+    <button class="app_button" @click="addNewWorker">Add Worker</button>
   </section>
 </template>
 
@@ -45,14 +45,15 @@ export default{
   methods:{
     ...mapMutations(["addWorker", "addSalary"]),
     addNewWorker(){
-      if(this.name != "" && this.surname != "" && this.departament != "" && this.salary != ""){
-          this.addWorker([this.name, this.surname, this.departament, this.salary])
+      if(this.firstName != "" && this.lastName != "" && this.department != "" && this.salary != ""){
+          this.addWorker([this.workers.length, this.firstName, this.lastName, this.department, this.salary])
           this.addSalary()
-          this.name = ""
-          this.surname = ""
-          this.departament = ""
+          this.firstName = ""
+          this.lastName = ""
+          this.department = "IT"
           this.salary = ""
       }
+      console.log(this.workers)
     },
     changeDepartament(event) {
       this.departament =

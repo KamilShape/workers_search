@@ -1,7 +1,6 @@
 <template>
   <section class="home">
       <AddWorker/>
-      <h1 class="app_title">Workers List</h1>
       <WorkersList/>
       <ContactView/>
   </section>

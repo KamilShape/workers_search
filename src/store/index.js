@@ -4,37 +4,37 @@ export default createStore({
     state: {
         workers: [{
                 id: 1,
-                name: "John",
-                surname: "Smith",
-                departament: "IT",
+                firstName: "John",
+                lastName: "Smith",
+                department: "IT",
                 salary: 3000
             },
             {
                 id: 2,
-                name: "Jane",
-                surname: "Doe",
-                departament: "IT",
+                firstName: "Jane",
+                lastName: "Doe",
+                department: "IT",
                 salary: 3000.5
             },
             {
                 id: 3,
-                name: "Bob",
-                surname: "Colman",
-                departament: "Sales",
+                firstName: "Bob",
+                lastName: "Colman",
+                department: "Sales",
                 salary: 9000
             },
             {
                 id: 4,
-                name: "Michael",
-                surname: "Smith",
-                departament: "Sales",
+                firstName: "Michael",
+                lastName: "Smith",
+                department: "Sales",
                 salary: 4000
             },
             {
                 id: 5,
-                name: "Adam",
-                surname: "Murphy",
-                departament: "Administration",
+                firstName: "Adam",
+                lastName: "Murphy",
+                department: "Administration",
                 salary: 2000
             },
         ],
@@ -42,12 +42,13 @@ export default createStore({
     },
     getters: {},
     mutations: {
-        addWorker(state, [name, surname, departament, salary]) {
+        addWorker(state, [id, firstName, lastName, department, salary]) {
             state.workers.push({
-                name,
-                surname,
-                departament,
-                salary
+                id: id,
+                firstName: firstName,
+                lastName: lastName,
+                department: department,
+                salary: salary
             })
 
         },
@@ -59,7 +60,6 @@ export default createStore({
                 salarySummary += workers[i].salary
             }
             state.salarySummary = salarySummary
-            console.log(workers.length)
         }
     },
     actions: {},

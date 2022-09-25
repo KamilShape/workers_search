@@ -25,6 +25,8 @@ export default {
   *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
   }
 .app{
   font-family: 'Ubuntu', sans-serif;
@@ -48,6 +50,23 @@ export default {
     }
     @media (min-width: 1414px) {
       font-size: 3.6rem;
+    }
+  }
+  &_name{
+    font-size: 1.6rem;
+    text-align: center;
+    @media (min-width: 768px) {
+      padding: 10px;
+      font-size: 1.8rem;
+    }
+    @media (min-width: 1024px) {
+      font-size: 2rem;
+    }
+    @media (min-width: 1280px) {
+      font-size: 2.2rem;
+    }
+    @media (min-width: 1414px) {
+      font-size: 2.4rem;
     }
   }
 }
