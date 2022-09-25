@@ -74,7 +74,8 @@ export default {
   font-weight: bold;
   &_link{
     padding: 10px;
-    transition: 2s ease-in-out;
+    color: black;
+    transition: 0.3s ease-in-out;
     &:hover{
       cursor: pointer;
       text-decoration: underline;

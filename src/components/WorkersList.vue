@@ -7,7 +7,7 @@
       <p>Salary (USD)</p>
     </div>
     <WorkerRow v-for='worker in workers'
-    :key="worker.name"
+    :key="worker.id"
     :name="worker.name"
     :surname="worker.surname"
     :departament="worker.departament"

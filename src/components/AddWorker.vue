@@ -1,17 +1,17 @@
 <template>
   <section class="addWorker">
-    <form action="" class="addWorker_form paragraph">
+    <form class="addWorker_form paragraph">
       <div class="addWorker_wrapper">
         <label class="addWorker_label">first name: </label>
-        <input class="addWorker_input" type="text">
+        <input class="addWorker_input" type="text" v-model="firstName">
       </div>
       <div class="addWorker_wrapper">
         <label class="addWorker_label">last name: </label>
-        <input class="addWorker_input" type="text">
+        <input class="addWorker_input" type="text" v-model="lastName">
       </div>
       <div class="addWorker_wrapper">
         <label class="addWorker_label">department: </label>
-        <select class="addWorker_input" type="text">
+        <select class="addWorker_input" @change="changeDepartament($event)" type="text" v-model="department">
           <option value="">IT</option>
           <option value="">Sales</option>
           <option value="">Administation</option>
@@ -19,14 +19,47 @@
       </div>
       <div class="addWorker_wrapper">
         <label class="addWorker_label">salary: </label>
-        <input class="addWorker_input" type="text">
+        <input class="addWorker_input" type="text" v-model="salary">
       </div>
     </form>
+    <button class="app_button">Add Worker</button>
   </section>
 </template>
 
 <script>
-
+import { mapMutations } from 'vuex'
+export default{
+  data(){
+    return{
+      firstName: "",
+      lastName: "",
+      department: "IT",
+      salary: ""
+    }
+  },
+  computed:{
+    workers(){
+      return this.$store.state.workers
+    },
+  },
+  methods:{
+    ...mapMutations(["addWorker", "addSalary"]),
+    addNewWorker(){
+      if(this.name != "" && this.surname != "" && this.departament != "" && this.salary != ""){
+          this.addWorker([this.name, this.surname, this.departament, this.salary])
+          this.addSalary()
+          this.name = ""
+          this.surname = ""
+          this.departament = ""
+          this.salary = ""
+      }
+    },
+    changeDepartament(event) {
+      this.departament =
+        event.target.options[event.target.options.selectedIndex].text;
+    },
+  },
+}
 </script>
 <style scoped lang="scss">
     .addWorker{
