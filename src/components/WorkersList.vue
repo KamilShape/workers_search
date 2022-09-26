@@ -14,10 +14,10 @@
             <input type="radio" @click='changeVisibility(false)' v-model="picked" value="department"> 
             <p>Department</p>
         </div>
-        <div class="workersList_radio">
+        <!-- <div class="workersList_radio">
             <input type="radio" @click='changeVisibility(false)' v-model="picked" value="salary"> 
             <p>Salary</p>
-        </div>
+        </div> -->
       </div>
       <input class='workersList_search paragraph' v-if="selectVisible"  v-model="search" type="text" > 
       <select class='workersList_search paragraph' v-if="!selectVisible" v-model="department" @change="changeDepartament($event)">
@@ -35,6 +35,7 @@
         </div>
         <WorkerRow v-for='worker in filteredWorkers'
           :key="worker.id"
+          :id="worker.id"
           :firstName="worker.firstName"
           :lastName="worker.lastName"
           :department="worker.department"
@@ -50,7 +51,8 @@
 
 <script>
   import WorkerRow from './WorkerRow.vue'
-  import { mapState } from "vuex"
+  import { mapState, mapMutations } from "vuex"
+
   export default{
     name: 'WorkersList',
     data(){
@@ -66,11 +68,12 @@
       WorkerRow
     },
     methods:{
-      addSalary(picked, search){
-        return this.$store.commit('addSalary',{
-          picked, 
-          search, 
-        })
+      ...mapMutations(["addSalary", "resetSalary"]),
+      sumSalary(picked, search){
+       this.addSalary({picked, search})
+      },
+      zeroSalary(){
+        this.resetSalary()
       },
       changeDepartament(event) {
         this.departament = event.target.options[event.target.options.selectedIndex].text;
@@ -82,17 +85,18 @@
     computed: {
     ...mapState(["workers", "salarySummary"]),
     filteredWorkers(){
+      this.zeroSalary()
       return this.workers.filter(worker => {
         if(this.picked == "firstName"){
-          this.addSalary(this.picked, this.search)
+          this.sumSalary(this.picked, this.search)
           return worker.firstName.toLowerCase().includes(this.search.toLowerCase())
         }
          else if(this.picked == "lastName"){
-          this.addSalary(this.picked, this.search)
+          this.sumSalary(this.picked, this.search)
           return worker.lastName.toLowerCase().includes(this.search.toLowerCase())
         }
          else if(this.picked == "department"){
-          this.addSalary(this.picked, this.department)
+          this.sumSalary(this.picked, this.department)
           return worker.department.toLowerCase().includes(this.department.toLowerCase())
         }
 
@@ -114,9 +118,9 @@
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    @media (min-width: 768px) {
-      width: 600px;
-    }
+      @media (min-width: 768px) {
+        width: 600px;
+      }
   }
   &_radio{
     display: flex;

@@ -53,11 +53,9 @@ export default{
           this.department = "IT"
           this.salary = ""
       }
-      console.log(this.workers)
     },
     changeDepartament(event) {
-      this.departament =
-        event.target.options[event.target.options.selectedIndex].text;
+      this.departament = event.target.options[event.target.options.selectedIndex].text;
     },
   },
 }

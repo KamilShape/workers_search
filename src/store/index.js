@@ -37,10 +37,16 @@ export default createStore({
                 department: "Administration",
                 salary: 2000
             },
+            {
+                id: 6,
+                firstName: "Jack",
+                lastName: "Kowalsky",
+                department: "Administration",
+                salary: 6000
+            },
         ],
-        salarySummary: 21000.5,
+        salarySummary: 0,
     },
-    getters: {},
     mutations: {
         addWorker(state, [id, firstName, lastName, department, salary]) {
             state.workers.push({
@@ -52,7 +58,16 @@ export default createStore({
             })
 
         },
+        removeWorker(state, id) {
+            let index = state.workers.findIndex(worker => worker.id == id)
+            state.workers.splice(index, 1)
+        },
+        resetSalary(state) {
+            state.salarySummary = 0
+        },
         addSalary(state, { picked, search }) {
+            let salarySummary = state.salarySummary
+            salarySummary = 0
             let workers = state.workers.filter((worker) => {
                 if (picked == "firstName") {
                     return worker.firstName.toLowerCase().includes(search.toLowerCase())
@@ -62,14 +77,11 @@ export default createStore({
                     return worker.department.toLowerCase().includes(search.toLowerCase())
                 }
             })
-            let salarySummary = state.salarySummary
-            salarySummary = 0
             for (let i = 0; i < workers.length; i++) {
                 salarySummary += workers[i].salary
             }
             state.salarySummary = salarySummary
-        }
+        },
+
     },
-    actions: {},
-    modules: {}
 })
