@@ -17,8 +17,4 @@
       salary: Number,
     },
 }
-
 </script>
-<style lang="scss">
-
-</style>

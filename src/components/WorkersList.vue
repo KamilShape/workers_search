@@ -1,48 +1,50 @@
 <template>
   <section class="workersList paragraph">
-    <div class="table_row workers_radios">
-          <div class="workersList_row">
-            <input type="radio" @click='changeVisibility(true)' v-model="picked" value="name">
+    <h1 class="app_name">Search workers</h1>
+    <div class="workersList_radios">
+          <div class="workersList_radio">
+            <input type="radio" @click='changeVisibility(true)' v-model="picked" value="firstName">
             <p>Name</p>
           </div>
-        <div class="workersList_row">
-            <input type="radio" @click='changeVisibility(true)' v-model="picked" value="surname"> 
+        <div class="workersList_radio">
+            <input type="radio" @click='changeVisibility(true)' v-model="picked" value="lastName"> 
             <p>Surname</p>
         </div>
-        <div class="workersList_row">
-            <input type="radio" @click='changeVisibility(false)' v-model="picked" value="departament"> 
-            <p>Departament</p>
+        <div class="workersList_radio">
+            <input type="radio" @click='changeVisibility(false)' v-model="picked" value="department"> 
+            <p>Department</p>
         </div>
-          <div class="workersList_row">
+        <div class="workersList_radio">
             <input type="radio" @click='changeVisibility(false)' v-model="picked" value="salary"> 
             <p>Salary</p>
         </div>
       </div>
-      <input class="workers_input" v-if="selectVisible"  v-model="search" type="text" > 
-      <select class="workers_input" v-if="!selectVisible" v-model="departament" @change="changeDepartament($event)">
+      <input class='workersList_search paragraph' v-if="selectVisible"  v-model="search" type="text" > 
+      <select class='workersList_search paragraph' v-if="!selectVisible" v-model="department" @change="changeDepartament($event)">
           <option value="IT">IT</option>
           <option value="Sales">Sales</option>
           <option value="Administration">Administration</option>
-          <option value="Advertisement">Advertisement</option>
       </select>
       <h1 class="app_name">List of workers</h1>
-    <div class="table_row workersList_header">
-      <p>Name</p>
-      <p>Surname</p>
-      <p>Department</p>
-      <p>Salary (USD)</p>
+      <div class="workersList_list">
+        <div class="table_row workersList_header">
+          <p>Name</p>
+          <p>Surname</p>
+          <p>Department</p>
+          <p>Salary (USD)</p>
+        </div>
+        <WorkerRow v-for='worker in filteredWorkers'
+          :key="worker.id"
+          :firstName="worker.firstName"
+          :lastName="worker.lastName"
+          :department="worker.department"
+          :salary="worker.salary"/>
+        <div class="table_row workersList_header workersList_summary"> 
+          <p>Summary</p> 
+          <p>{{salarySummary}}</p>
+        </div>
     </div>
-    <WorkerRow v-for='worker in filteredWorkers'
-    :key="worker.id"
-    :firstName="worker.firstName"
-    :lastName="worker.lastName"
-    :department="worker.department"
-    :salary="worker.salary"
-    />
-    <div class="table_row workersList_header workersList_summary"> 
-      <p>Summary</p> 
-      <p>{{salarySummary}}</p>
-    </div>
+
   </section>
 </template>
 
@@ -50,30 +52,48 @@
   import WorkerRow from './WorkerRow.vue'
   import { mapState } from "vuex"
   export default{
+    name: 'WorkersList',
     data(){
     return{
       search: "",
-      picked: "name",
-      departament: "IT",
+      picked: "firstName",
+      department: "IT",
+      salary:1,
       selectVisible: true
-    }
-  },
-    name: 'WorkersList',
+      }
+    },
     components:{  
       WorkerRow
+    },
+    methods:{
+      addSalary(picked, search){
+        return this.$store.commit('addSalary',{
+          picked, 
+          search, 
+        })
+      },
+      changeDepartament(event) {
+        this.departament = event.target.options[event.target.options.selectedIndex].text;
+      },
+      changeVisibility(value){
+        this.selectVisible = value
+      }
     },
     computed: {
     ...mapState(["workers", "salarySummary"]),
     filteredWorkers(){
       return this.workers.filter(worker => {
-        if(this.picked == "name"){
-          return worker.name.toLowerCase().includes(this.search.toLowerCase())
+        if(this.picked == "firstName"){
+          this.addSalary(this.picked, this.search)
+          return worker.firstName.toLowerCase().includes(this.search.toLowerCase())
         }
-         else if(this.picked == "surname"){
-          return worker.surname.toLowerCase().includes(this.search.toLowerCase())
+         else if(this.picked == "lastName"){
+          this.addSalary(this.picked, this.search)
+          return worker.lastName.toLowerCase().includes(this.search.toLowerCase())
         }
-         else if(this.picked == "departament"){
-          return worker.departament.toLowerCase().includes(this.departament.toLowerCase())
+         else if(this.picked == "department"){
+          this.addSalary(this.picked, this.department)
+          return worker.department.toLowerCase().includes(this.department.toLowerCase())
         }
 
       })
@@ -87,21 +107,46 @@
   &_header{
     font-weight: bold;
     text-transform: uppercase;
-    background-color: rgb(147, 179, 207);
+  }
+  &_radios{
+    padding: 10px;
+    width: 375px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    @media (min-width: 768px) {
+      width: 600px;
+    }
+  }
+  &_radio{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 33%;
+  }
+  &_search{
+    width: 70%;
+    max-width: 500px;
+    margin: 10px auto;
   }
   &_summary{
     display: flex;
     justify-content: right;
+  }
+  &_list{
+    margin: 0 auto;
+    width: 90%;
+    padding-bottom: 20px;
   }
 }
 .table_row{
   display: flex;
   padding: 5px;
   &:nth-of-type(odd){
-    background-color: rgba(147, 179, 207,1);
+    background-color: 	rgb(143,188,143,0.8)
   }
   &:nth-of-type(even){
-    background-color: rgba(147, 179, 207,0.5);
+    background-color: 	rgb(143,188,143,0.5)
   }
   & p{
     width:25%;

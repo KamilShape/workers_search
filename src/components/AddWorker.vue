@@ -3,15 +3,15 @@
     <form class="addWorker_form paragraph">
       <div class="addWorker_wrapper">
         <label class="addWorker_label">first name: </label>
-        <input class="addWorker_input" type="text" v-model="firstName">
+        <input class="addWorker_input paragraph" type="text" v-model="firstName">
       </div>
       <div class="addWorker_wrapper">
         <label class="addWorker_label">last name: </label>
-        <input class="addWorker_input" type="text" v-model="lastName">
+        <input class="addWorker_input paragraph" type="text" v-model="lastName">
       </div>
       <div class="addWorker_wrapper">
         <label class="addWorker_label">department: </label>
-        <select class="addWorker_input" @change="changeDepartament($event)" type="text" v-model="department">
+        <select class="addWorker_input paragraph" @change="changeDepartament($event)" type="text" v-model="department">
           <option value="IT">IT</option>
           <option value="Sales">Sales</option>
           <option value="Administration">Administation</option>
@@ -19,10 +19,10 @@
       </div>
       <div class="addWorker_wrapper">
         <label class="addWorker_label">salary: </label>
-        <input class="addWorker_input" type="number" v-model="salary">
+        <input class="addWorker_input paragraph" type="number" v-model="salary">
       </div>
     </form>
-    <button class="app_button" @click="addNewWorker">Add Worker</button>
+    <button class="app_button paragraph" @click="addNewWorker">Add Worker</button>
   </section>
 </template>
 
@@ -46,7 +46,7 @@ export default{
     ...mapMutations(["addWorker", "addSalary"]),
     addNewWorker(){
       if(this.firstName != "" && this.lastName != "" && this.department != "" && this.salary != ""){
-          this.addWorker([this.workers.length, this.firstName, this.lastName, this.department, this.salary])
+          this.addWorker([this.workers.length+1, this.firstName, this.lastName, this.department, this.salary])
           this.addSalary()
           this.firstName = ""
           this.lastName = ""
@@ -83,6 +83,7 @@ export default{
       }
       &_label{
         text-transform: uppercase;
+        margin: auto;
         font-weight: 700;
         width: 40%;
       }

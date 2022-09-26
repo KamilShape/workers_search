@@ -44,16 +44,24 @@ export default createStore({
     mutations: {
         addWorker(state, [id, firstName, lastName, department, salary]) {
             state.workers.push({
-                id: id,
-                firstName: firstName,
-                lastName: lastName,
-                department: department,
-                salary: salary
+                id,
+                firstName,
+                lastName,
+                department,
+                salary
             })
 
         },
-        addSalary(state) {
-            let workers = state.workers
+        addSalary(state, { picked, search }) {
+            let workers = state.workers.filter((worker) => {
+                if (picked == "firstName") {
+                    return worker.firstName.toLowerCase().includes(search.toLowerCase())
+                } else if (picked == "lastName") {
+                    return worker.lastName.toLowerCase().includes(search.toLowerCase())
+                } else if (picked == "department") {
+                    return worker.department.toLowerCase().includes(search.toLowerCase())
+                }
+            })
             let salarySummary = state.salarySummary
             salarySummary = 0
             for (let i = 0; i < workers.length; i++) {

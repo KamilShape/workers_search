@@ -31,7 +31,7 @@ export default {
 .app{
   font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
-  background-color: rgb(122, 160, 203);
+  background-color: 	rgba(143,188,143, 0.5);
   &_title{
     font-size: 2.4rem;
     text-align: center;
@@ -69,20 +69,35 @@ export default {
       font-size: 2.4rem;
     }
   }
+  &_button{
+    font-family: 'Ubuntu', sans-serif;
+    display: block;
+    border: none;
+    border-radius: 10px 0 10px 0;
+    transition: 0.1s ease-in;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: 	rgb(143,188,143);
+    &:hover{
+      cursor: pointer;
+        background-color: 	rgb(144,238,144);
+        border-radius: 0 10px 0 10px;
+    }
+  }
 }
 .paragraph{
   font-size: 1.0rem;
     @media (min-width: 768px) {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
     @media (min-width: 1024px) {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
     @media (min-width: 1280px) {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
       }
     @media (min-width: 1414px) {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
       }
 }
 .menu{
@@ -117,9 +132,10 @@ section{
   min-width: 375px;
 }
 input, select{
+  display: block;
   background-color: white;
   outline: none;
-  border-radius: 10px;
+  border-radius: 15px;
   text-align: center;
   border: 1px solid black;
   padding: 5px;
