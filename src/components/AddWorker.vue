@@ -22,7 +22,7 @@
         <input class="addWorker_input paragraph" type="number" v-model="salary">
       </div>
     </form>
-    <button class="app_button paragraph" @click="addNewWorker">Add Worker</button>
+    <button class="app_button addWorker_button paragraph" @click="addNewWorker">Add Worker</button>
   </section>
 </template>
 
@@ -87,6 +87,13 @@ export default{
       }
       &_input{
         width: 60%;
+      }
+      &_button {
+        background-color: 	rgb(143,188,143);
+        padding: 10px;
+          &:hover{
+            background-color: 	rgb(144,238,144);
+        }
       }
     }
 </style>

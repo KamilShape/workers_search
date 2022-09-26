@@ -1,9 +1,10 @@
 <template>
     <div class="worker table_row">
-      <p><button @click="remove(this.id)">Remove</button>{{firstName}}</p>
-      <p>{{lastName}}</p>
-      <p>{{department}}</p>
-      <p>{{salary}}</p>
+      <p class="table_row_com"><button class="app_button worker_button" @click="remove(this.id)">X</button></p>
+      <p class="table_row_com">{{firstName}}</p>
+      <p class="table_row_com">{{lastName}}</p>
+      <p class="table_row_com">{{department}}</p>
+      <p class="table_row_com">{{salary}}</p>
     </div>
 </template>
 
@@ -22,8 +23,25 @@
       ...mapMutations(["removeWorker", "addSalary"]),
       remove(id){
         this.removeWorker(id)
-        // this.addSalary()
       }
     }
 }
 </script>
+<style lang="scss">
+  .worker_button{
+    margin: auto 0 auto 0;
+    border-radius: unset;
+    padding: 2px 5px;
+    background-color:rgb(253, 253, 151, 0.4);
+    &:hover{
+      background-color:rgb(253, 253, 151, 0.7);
+      border-radius: unset;
+    }
+    @media (min-width: 1024px) {
+        font-size: 0.8rem;
+      }
+    @media (min-width: 1280px) {
+        font-size: 1rem;
+      }
+  }
+</style>

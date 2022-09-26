@@ -14,10 +14,6 @@
             <input type="radio" @click='changeVisibility(false)' v-model="picked" value="department"> 
             <p>Department</p>
         </div>
-        <!-- <div class="workersList_radio">
-            <input type="radio" @click='changeVisibility(false)' v-model="picked" value="salary"> 
-            <p>Salary</p>
-        </div> -->
       </div>
       <input class='workersList_search paragraph' v-if="selectVisible"  v-model="search" type="text" > 
       <select class='workersList_search paragraph' v-if="!selectVisible" v-model="department" @change="changeDepartament($event)">
@@ -28,10 +24,11 @@
       <h1 class="app_name">List of workers</h1>
       <div class="workersList_list">
         <div class="table_row workersList_header">
-          <p>Name</p>
-          <p>Surname</p>
-          <p>Department</p>
-          <p>Salary (USD)</p>
+          <p class="table_row_com"></p>
+          <p class="table_row_com">Name</p>
+          <p class="table_row_com">Surname</p>
+          <p class="table_row_com">Department</p>
+          <p class="table_row_com">Salary (USD)</p>
         </div>
         <WorkerRow v-for='worker in filteredWorkers'
           :key="worker.id"
@@ -41,8 +38,11 @@
           :department="worker.department"
           :salary="worker.salary"/>
         <div class="table_row workersList_header workersList_summary"> 
-          <p>Summary</p> 
-          <p>{{salarySummary}}</p>
+          <p class="table_row_com"></p>
+          <p class="table_row_com"></p>
+          <p class="table_row_com"></p>
+          <p class="table_row_com">Summary</p>
+          <p class="table_row_com">{{salarySummary}}</p>
         </div>
     </div>
 
@@ -72,9 +72,6 @@
       sumSalary(picked, search){
        this.addSalary({picked, search})
       },
-      zeroSalary(){
-        this.resetSalary()
-      },
       changeDepartament(event) {
         this.departament = event.target.options[event.target.options.selectedIndex].text;
       },
@@ -85,7 +82,7 @@
     computed: {
     ...mapState(["workers", "salarySummary"]),
     filteredWorkers(){
-      this.zeroSalary()
+      this.resetSalary()
       return this.workers.filter(worker => {
         if(this.picked == "firstName"){
           this.sumSalary(this.picked, this.search)
@@ -111,6 +108,7 @@
   &_header{
     font-weight: bold;
     text-transform: uppercase;
+    justify-content: right;
   }
   &_radios{
     padding: 10px;
@@ -139,22 +137,14 @@
   }
   &_list{
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
     padding-bottom: 20px;
-  }
-}
-.table_row{
-  display: flex;
-  padding: 5px;
-  &:nth-of-type(odd){
-    background-color: 	rgb(143,188,143,0.8)
-  }
-  &:nth-of-type(even){
-    background-color: 	rgb(143,188,143,0.5)
-  }
-  & p{
-    width:25%;
-    text-align: center;
+    @media (min-width: 768px) {
+        width: 90%;
+      }
+    @media (min-width: 1024px) {
+        width: 80%;
+      }
   }
 }
 </style>

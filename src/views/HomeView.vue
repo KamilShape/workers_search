@@ -18,5 +18,7 @@ components:{
 }
 </script>
 <style lang="scss">
-
+.home{
+  // height: calc(900px - 70px);
+}
 </style>

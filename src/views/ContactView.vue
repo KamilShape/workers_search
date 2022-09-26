@@ -15,14 +15,14 @@
 </template>
 <style lang="scss">
   .contact{
-    padding-bottom: 20px;
+    height: 100vh;
     &_wrapper{
       max-width: 800px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
         @media (min-width: 768px) {
-          padding: 40px;
+          // padding: 40px;
           flex-direction: row;
         }
     }
