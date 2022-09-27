@@ -1,28 +1,18 @@
 <template>
   <section class="app">
-      <nav class="menu paragraph">
-        <router-link class="menu_link" to="/">Home</router-link> 
-        <router-link class="menu_link" to="/contact">Contact</router-link>
-      </nav>
-      <h1 class="app_title">Workers App</h1>
-      <router-view v-slot="{ Component }">
-        <keep-alive>
+    <nav class="menu paragraph">
+      <router-link class="menu_link" to="/">Home</router-link> 
+      <router-link class="menu_link" to="/contact">Contact</router-link>
+    </nav>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <transition name="router_animation">
           <component :is="Component" />
-        </keep-alive>
-      </router-view>
-      <Footer/>
+        </transition>
+      </keep-alive>
+    </router-view>
   </section>
 </template>
-<script>
-
-import Footer from '@/components/Footer.vue';
-export default{
-  components:{
-  Footer
-  }
-}
-
-</script>
 <style lang="scss">
   *{
     margin: 0;
@@ -32,21 +22,16 @@ export default{
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
   }
+  body{
+    background-image: url(../public/backgroung.png);
+    background-position: contain;
+  }
   .app{
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 12px;
-    background-color: rgba(0,0,0,0.1);
-    // background-image: url(../public/background.jpg);
-    background-position: center;
     &_title{
       font-size: 2.4rem;
       text-align: center;
-      padding: 10px 0;
-      &:nth-of-type(1){
-        // background-color: 	rgba(143,188,143);
-        padding-top: 30px;
-        width: 100%;
-      }
+      padding: 100px 0 20px;
+      width: 100%;
       @media (min-width: 768px) {
         font-size: 2.7rem;
       }
@@ -104,6 +89,7 @@ export default{
       }
 }
 .menu{
+  position: fixed;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -152,6 +138,20 @@ export default{
     width:2%;
   }
 }
+.router_animation-enter-active {
+    transition: 1.5s ease-in-out;
+}
+.router_animation-leave-active {
+    transition: 0.5s ease-in-out;
+}
+.router_animation-enter-from {
+    transform: translateX(100%);
+    opacity: 0;
+}
+.router_animation-leave-to {
+    transform: translateY(-100%);
+    opacity: 0;
+}
 section{
   min-width: 375px;
 }
@@ -163,5 +163,15 @@ input, select{
   text-align: center;
   border: 1px solid black;
   padding: 5px;
+}
+footer{
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  height: 70px;
+  padding: 20px;
+  background-color:rgba(143,188,143);
 }
 </style>

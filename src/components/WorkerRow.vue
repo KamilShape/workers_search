@@ -5,7 +5,7 @@
       <p class="table_row_com">{{lastName}}</p>
       <p class="table_row_com">{{department}}</p>
       <p class="table_row_com">{{salary}}</p>
-    </div>
+    </div> 
 </template>
 
 <script>

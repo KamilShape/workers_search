@@ -30,13 +30,15 @@
           <p class="table_row_com">Department</p>
           <p class="table_row_com">Salary (USD)</p>
         </div>
-        <WorkerRow v-for='worker in filteredWorkers'
+        <transition-group name="opacity">
+          <WorkerRow v-for='worker in filteredWorkers'
           :key="worker.id"
           :id="worker.id"
           :firstName="worker.firstName"
           :lastName="worker.lastName"
           :department="worker.department"
           :salary="worker.salary"/>
+        </transition-group> 
         <div class="table_row workersList_header workersList_summary"> 
           <p class="table_row_com"></p>
           <p class="table_row_com"></p>
@@ -125,6 +127,9 @@
     justify-content: space-evenly;
     text-align: center;
     width: 33%;
+    &:hover{
+      cursor: pointer;
+    }
   }
   &_search{
     width: 70%;
@@ -138,7 +143,8 @@
   &_list{
     margin: 0 auto;
     width: 100%;
-    padding-bottom: 20px;
+    height: 100%;
+    padding-bottom: 90px;
     @media (min-width: 768px) {
         width: 90%;
       }
@@ -146,5 +152,19 @@
         width: 80%;
       }
   }
+}
+.opacity-enter-active {
+    transition: 1s ease-in-out;
+}
+.opacity-leave-active {
+    transition: 0.5s ease-in-out;
+}
+.opacity-enter-from {
+    transform: translateX(100%);  
+    opacity: 0;
+}
+.opacity-leave-to {
+  transform: translateX(-100%);
+    opacity: 0;
 }
 </style>

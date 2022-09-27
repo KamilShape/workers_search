@@ -1,6 +1,6 @@
 <template>
   <section class="contact">
-    <h1 class="app_name">Contact</h1>
+    <h1 class="app_title">Contact</h1>
     <div class="contact_wrapper">
       <div class="contact_content">
         <h2 class="app_name">Ask me question!</h2>
@@ -11,10 +11,21 @@
       </div>
       <iframe className='contact_map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d74463.3682203033!2d18.558681765570636!3d54.321980400190036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd731c14d4fa6f%3A0x9bb9fbf163b7be8d!2zR2RhxYRzaw!5e0!3m2!1spl!2spl!4v1662386341599!5m2!1spl!2spl" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
     </div>
+    <footer class="paragraph"><p>Created by Kamil Linstedt © 2022</p></footer>
   </section>
 </template>
+
 <style lang="scss">
   .contact{
+    width: 100%;
+    height: 100%;
+    @media (max-width: 768px) and (min-height: 850px) {
+      height: calc(100vh - 70px);
+    }
+    @media (min-width: 768px) and (min-height: 700px) {
+      height: calc(100vh - 70px);
+    }
+
     &_wrapper{
       max-width: 800px;
       margin: 0 auto;
@@ -22,6 +33,7 @@
       flex-direction: column;
         @media (min-width: 768px) {
           flex-direction: row;
+          margin-top: 50px;
         }
     }
     &_content{
@@ -29,13 +41,17 @@
       margin: 0 auto;
       width: 375px;
       padding: 15px;
+      @media (min-width: 768px) {
+          flex-direction: row;
+          margin-top: 30px;
+        }
     }
     &_paragraph{
       padding: 10px;
     }
     &_map {
         display: block;
-        margin: 0 auto;
+        margin: 0 auto 90px;
         border: none;
         width: 350px;
         height: 400px;
