@@ -48,11 +48,11 @@ export default{
       if(this.firstName != "" && this.lastName != "" && this.department != "" && this.salary != ""){
           this.addWorker([this.workers.length+1, this.firstName, this.lastName, this.department, this.salary])
           this.addSalary()
-          this.firstName = ""
-          this.lastName = ""
-          this.department = "IT"
-          this.salary = ""
       }
+      this.firstName = ""
+      this.lastName = ""
+      this.department = "IT"
+      this.salary = ""
     },
     changeDepartament(event) {
       this.departament = event.target.options[event.target.options.selectedIndex].text;
@@ -90,9 +90,11 @@ export default{
       }
       &_button {
         background-color: 	rgb(143,188,143);
+        border-radius: 15px 0 15px 0;
         padding: 10px;
           &:hover{
             background-color: 	rgb(144,238,144);
+            border-radius: 0 15px 0 15px;
         }
       }
     }

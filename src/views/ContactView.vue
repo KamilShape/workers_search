@@ -1,6 +1,6 @@
 <template>
   <section class="contact">
-    <h1 class="app_title">Contact</h1>
+    <h1 class="app_name">Contact</h1>
     <div class="contact_wrapper">
       <div class="contact_content">
         <h2 class="app_name">Ask me question!</h2>
@@ -15,14 +15,12 @@
 </template>
 <style lang="scss">
   .contact{
-    height: 100vh;
     &_wrapper{
       max-width: 800px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
         @media (min-width: 768px) {
-          // padding: 40px;
           flex-direction: row;
         }
     }

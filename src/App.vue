@@ -1,11 +1,10 @@
 <template>
   <section class="app">
-    <h1 class="app_title">Workers App</h1>
       <nav class="menu paragraph">
         <router-link class="menu_link" to="/">Home</router-link> 
-        <p class="menu_link" >|</p>
         <router-link class="menu_link" to="/contact">Contact</router-link>
       </nav>
+      <h1 class="app_title">Workers App</h1>
       <router-view v-slot="{ Component }">
         <keep-alive>
           <component :is="Component" />
@@ -20,7 +19,7 @@ import Footer from '@/components/Footer.vue';
 export default{
   components:{
   Footer
-}
+  }
 }
 
 </script>
@@ -28,24 +27,24 @@ export default{
   *{
     margin: 0;
     padding: 0;
+    color: black;
+    text-decoration: none;
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
   }
   .app{
     font-family: 'Ubuntu', sans-serif;
     font-size: 12px;
-    padding-top: 150px;
-    background-color: 	rgba(143,188,143, 0.5);
-    // background-color: red;
+    background-color: rgba(0,0,0,0.1);
+    // background-image: url(../public/background.jpg);
+    background-position: center;
     &_title{
       font-size: 2.4rem;
       text-align: center;
       padding: 10px 0;
       &:nth-of-type(1){
-        background-color: 	rgba(143,188,143);
+        // background-color: 	rgba(143,188,143);
         padding-top: 30px;
-        position: absolute;
-        top: 0;
         width: 100%;
       }
       @media (min-width: 768px) {
@@ -82,12 +81,10 @@ export default{
       font-family: 'Ubuntu', sans-serif;
       display: block;
       border: none;
-      border-radius: 10px 0 10px 0;
       transition: 0.1s ease-in;
       margin: 20px auto;
       &:hover{
         cursor: pointer;
-        border-radius: 0 10px 0 10px;
         }
     }
 }
@@ -108,18 +105,21 @@ export default{
 }
 .menu{
   display: flex;
+  width: 100%;
   justify-content: center;
   font-size: 1.3rem;
   text-transform: uppercase;
+  background-color: 	rgba(143,188,143);
   text-decoration: none;
   font-weight: bold;
   &_link{
     padding: 10px;
-    color: black;
+    text-align: center;
+    width: 50%;
     transition: 0.3s ease-in-out;
     &:hover{
       cursor: pointer;
-      text-decoration: underline;
+      background-color: 	rgb(144,238,144);
         }
       }
     @media (min-width: 768px) {
