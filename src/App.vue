@@ -1,8 +1,8 @@
 <template>
   <section class="app">
     <nav class="menu paragraph">
-      <router-link class="menu_link" to="/">Home</router-link> 
-      <router-link class="menu_link" to="/contact">Contact</router-link>
+      <router-link class="menu_link" to="workers_search/">Home</router-link> 
+      <router-link class="menu_link" to="workers_search/contact">Contact</router-link>
     </nav>
     <router-view v-slot="{ Component }">
       <transition name="router_animation">

@@ -3,12 +3,12 @@ import HomeView from '../views/HomeView.vue'
 import ContactView from '../views/ContactView.vue'
 
 const routes = [{
-        path: '/',
+        path: 'workers_search/',
         name: 'home',
         component: HomeView
     },
     {
-        path: '/contact',
+        path: 'workers_search/contact',
         name: 'contact',
         component: ContactView
     }
