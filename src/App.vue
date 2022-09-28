@@ -5,11 +5,11 @@
       <router-link class="menu_link" to="/contact">Contact</router-link>
     </nav>
     <router-view v-slot="{ Component }">
-      <keep-alive>
-        <transition name="router_animation">
+      <transition name="router_animation">
+        <keep-alive>
           <component :is="Component" />
-        </transition>
-      </keep-alive>
+        </keep-alive>
+      </transition>
     </router-view>
   </section>
 </template>
@@ -92,19 +92,19 @@
 .menu{
   position: fixed;
   display: flex;
-  z-index: 2;
+  justify-content: center;
   width: 100vw;
   min-width: 375px;
-  justify-content: center;
-  font-size: 1.3rem;
-  text-transform: uppercase;
   background-color: 	rgba(143,188,143);
-  text-decoration: none;
+  font-size: 1.3rem;
   font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 2;
   &_link{
+    width: 50%;
     padding: 10px;
     text-align: center;
-    width: 50%;
     transition: 0.3s ease-in-out;
     &:hover{
       cursor: pointer;
@@ -160,12 +160,11 @@ section{
 }
 input, select{
   display: block;
-  background-color: white;
-  outline: none;
-  border-radius: 15px;
-  text-align: center;
-  border: 1px solid black;
   padding: 5px;
+  text-align: center;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 15px;
+  outline: none;
 }
-
 </style>

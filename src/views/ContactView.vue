@@ -26,45 +26,45 @@
     }
 
     &_wrapper{
-      max-width: 800px;
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
+      max-width: 800px;
+      margin: 0 auto;
         @media (min-width: 768px) {
           flex-direction: row;
           margin-top: 50px;
         }
     }
     &_content{
-      text-align: center;
-      margin: 0 auto;
       width: 375px;
       padding: 15px;
+      margin: 0 auto;
+      text-align: center;
       @media (min-width: 768px) {
-          flex-direction: row;
-          margin-top: 30px;
-        }
+        flex-direction: row;
+        margin-top: 30px;
+      }
     }
     &_paragraph{
       padding: 10px;
     }
     &_map {
-        display: block;
-        margin: 0 auto 90px;
-        border: none;
-        width: 350px;
-        height: 400px;
+      display: block;
+      margin: 0 auto 90px;
+      border: none;
+      width: 350px;
+      height: 400px;
     }
     footer{
-      min-width: 375px;
-      z-index: 1;
       position: fixed;
       bottom: 0;
-      text-align: center;
       width: 100%;
       height: 70px;
+      min-width: 375px;
+      text-align: center;
       padding: 20px;
       background-color:rgba(143,188,143);
-}
+      z-index: 1;    
+    }
   }
 </style>

@@ -91,6 +91,5 @@ export default createStore({
             }
             state.salarySummary = salarySummary
         },
-
     },
 })

@@ -11,7 +11,7 @@
       </div>
       <div class="addWorker_wrapper">
         <label class="addWorker_label">department: </label>
-        <select class="addWorker_input paragraph" @change="changeDepartament($event)" type="text" v-model="department">
+        <select class="addWorker_input paragraph" @change="changeSelect($event)" type="text" v-model="department">
           <option value="IT">IT</option>
           <option value="Sales">Sales</option>
           <option value="Administration">Administation</option>
@@ -49,30 +49,26 @@ export default{
           this.addWorker([this.workers.length+1, this.firstName, this.lastName, this.department, this.salary])
           this.addSalary()
       }
-      this.firstName = ""
-      this.lastName = ""
-      this.department = "IT"
-      this.salary = ""
     },
-    changeDepartament(event) {
-      this.departament = event.target.options[event.target.options.selectedIndex].text;
-    },
+    changeSelect(event) {
+        this.value = event.target.options[event.target.options.selectedIndex].text;
+      },
   },
 }
 </script>
 <style scoped lang="scss">
     .addWorker{
       &_form{
-        width: 375px;
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
-          @media (min-width: 768px) {
-            width: 500px;
-          }
-          @media (min-width: 1024px) {
-            width: 700px;
-          }
+        width: 375px;
+        margin: 0 auto;
+        @media (min-width: 768px) {
+          width: 500px;
+        }
+        @media (min-width: 1024px) {
+          width: 700px;
+        }
       }
       &_wrapper{
         display: flex;
@@ -80,21 +76,21 @@ export default{
         padding: 10px;
       }
       &_label{
-        text-transform: uppercase;
+        width: 40%;
         margin: auto;
         font-weight: 700;
-        width: 40%;
+        text-transform: uppercase;
       }
       &_input{
         width: 60%;
       }
       &_button {
+        padding: 10px;
         background-color: 	rgb(143,188,143);
         border-radius: 15px 0 15px 0;
-        padding: 10px;
-          &:hover{
-            background-color: 	rgb(144,238,144);
-            border-radius: 0 15px 0 15px;
+        &:hover{
+          background-color: 	rgb(144,238,144);
+          border-radius: 0 15px 0 15px;
         }
       }
     }
