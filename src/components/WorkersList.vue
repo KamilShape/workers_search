@@ -3,23 +3,32 @@
     <h1 class="app_name">Search workers</h1>
     <div class="workersList_radios">
           <div class="workersList_radio">
-            <input type="radio" @click='changeVisibility(true)' v-model="picked" value="firstName">
+            <input type="radio" @click='changeVisibility(true, false, false)' v-model="picked" value="firstName">
             <p>Name</p>
           </div>
         <div class="workersList_radio">
-            <input type="radio" @click='changeVisibility(true)' v-model="picked" value="lastName"> 
+            <input type="radio" @click='changeVisibility(true, false, false)' v-model="picked" value="lastName"> 
             <p>Surname</p>
         </div>
         <div class="workersList_radio">
-            <input type="radio" @click='changeVisibility(false)' v-model="picked" value="department"> 
+            <input type="radio" @click='changeVisibility(false, true, false)' v-model="picked" value="department"> 
             <p>Department</p>
         </div>
+        <div class="workersList_radio">
+            <input type="radio" @click='changeVisibility(false, false, true)' v-model="picked" value="salary"> 
+            <p>Salary</p>
+        </div>
       </div>
-      <input class='workersList_search paragraph' v-if="selectVisible"  v-model="search" type="text" > 
-      <select class='workersList_search paragraph' v-if="!selectVisible" v-model="department" @change="changeDepartament($event)">
+      <input class='workersList_search paragraph' v-if="nameSurnameVisible"  v-model="search" type="text" > 
+      <select class='workersList_search paragraph' v-if="departmentVisible" v-model="department" @change="changeDepartament($event)">
           <option value="IT">IT</option>
           <option value="Sales">Sales</option>
           <option value="Administration">Administration</option>
+      </select>
+      <select class='workersList_search paragraph' v-if="salaryVisible" v-model="salary" @change="changeDepartament($event)">
+          <option value="1">0 - 3000</option>
+          <option value="2">3000 - 6000</option>
+          <option value="3">over 6000</option>
       </select>
       <h1 class="app_name">List of workers</h1>
       <div class="workersList_list">
@@ -62,8 +71,10 @@
       search: "",
       picked: "firstName",
       department: "IT",
-      salary:1,
-      selectVisible: true
+      salary: "1",
+      nameSurnameVisible: true,
+      departmentVisible: false,
+      salaryVisible: false,
       }
     },
     components:{  
@@ -77,10 +88,12 @@
       changeDepartament(event) {
         this.departament = event.target.options[event.target.options.selectedIndex].text;
       },
-      changeVisibility(value){
-        this.selectVisible = value
-      }
-    },
+      changeVisibility(value1, value2, value3){
+        this.nameSurnameVisible = value1,
+        this.departmentVisible = value2,
+        this.salaryVisible = value3
+          }
+      },
     computed: {
     ...mapState(["workers", "salarySummary"]),
     filteredWorkers(){
@@ -97,11 +110,18 @@
          else if(this.picked == "department"){
           this.sumSalary(this.picked, this.department)
           return worker.department.toLowerCase().includes(this.department.toLowerCase())
+        }else{
+          this.sumSalary(this.picked, this.salary)
+          if(this.salary == '1'){
+              return worker.salary <= 3000
+          } else if(this.salary == '2'){
+              return worker.salary > 3000 && worker.salary <= 6000        
+          } else if(this.salary == '3'){
+              return worker.salary > 6000        
+          } 
         }
-
       })
     }
-
   }
 }
 </script>
@@ -114,12 +134,13 @@
   }
   &_radios{
     padding: 10px;
-    width: 375px;
+    width: 100%;
+    max-width: 700px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
       @media (min-width: 768px) {
-        width: 600px;
+        width: 80%;
       }
   }
   &_radio{

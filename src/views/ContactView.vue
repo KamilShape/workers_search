@@ -17,13 +17,12 @@
 
 <style lang="scss">
   .contact{
-    width: 100%;
     height: 100%;
     @media (max-width: 768px) and (min-height: 850px) {
-      height: calc(100vh - 70px);
+      height: 100vh;
     }
     @media (min-width: 768px) and (min-height: 700px) {
-      height: calc(100vh - 70px);
+      height: 100vh;
     }
 
     &_wrapper{
@@ -56,5 +55,16 @@
         width: 350px;
         height: 400px;
     }
+    footer{
+      min-width: 375px;
+      z-index: 1;
+      position: fixed;
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+      height: 70px;
+      padding: 20px;
+      background-color:rgba(143,188,143);
+}
   }
 </style>

@@ -75,6 +75,15 @@ export default createStore({
                     return worker.lastName.toLowerCase().includes(search.toLowerCase())
                 } else if (picked == "department") {
                     return worker.department.toLowerCase().includes(search.toLowerCase())
+                } else {
+                    console.log('działa salary')
+                    if (search == '1') {
+                        return worker.salary <= 3000
+                    } else if (search == '2') {
+                        return worker.salary > 3000 && worker.salary <= 6000
+                    } else if (search == '3') {
+                        return worker.salary > 6000
+                    }
                 }
             })
             for (let i = 0; i < workers.length; i++) {

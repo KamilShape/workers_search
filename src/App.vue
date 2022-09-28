@@ -30,10 +30,11 @@
     &_title{
       font-size: 2.4rem;
       text-align: center;
-      padding: 100px 0 20px;
+      padding: 50px 0 20px;
       width: 100%;
       @media (min-width: 768px) {
         font-size: 2.7rem;
+        padding-top: 70px
       }
       @media (min-width: 1024px) {
         font-size: 3rem;
@@ -91,7 +92,9 @@
 .menu{
   position: fixed;
   display: flex;
-  width: 100%;
+  z-index: 2;
+  width: 100vw;
+  min-width: 375px;
   justify-content: center;
   font-size: 1.3rem;
   text-transform: uppercase;
@@ -140,7 +143,7 @@
 }
 .router_animation-enter-active {
     transition: 1.5s ease-in-out;
-}
+  }
 .router_animation-leave-active {
     transition: 0.5s ease-in-out;
 }
@@ -164,14 +167,5 @@ input, select{
   border: 1px solid black;
   padding: 5px;
 }
-footer{
-  z-index: 1;
-  position: fixed;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
-  height: 70px;
-  padding: 20px;
-  background-color:rgba(143,188,143);
-}
+
 </style>
