@@ -1,21 +1,21 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ContactView from '../views/ContactView.vue'
 
 const routes = [{
-        path: 'workers_search/',
+        path: '/',
         name: 'home',
         component: HomeView
     },
     {
-        path: 'workers_search/contact',
+        path: '/contact',
         name: 'contact',
         component: ContactView
     }
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHashHistory(process.env.BASE_URL),
     routes
 })
 
